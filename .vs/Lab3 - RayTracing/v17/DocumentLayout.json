@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3F663651-A905-4082-8DE9-F5729F5E792C}|Lab3 - RayTracing\\Lab3 - RayTracing.csproj|c:\\users\\valeria\\desktop\\computer graphics\\lab3 - raytracing\\lab3 - raytracing\\ray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F663651-A905-4082-8DE9-F5729F5E792C}|Lab3 - RayTracing\\Lab3 - RayTracing.csproj|solutionrelative:lab3 - raytracing\\ray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d3750d8a-574b-4fb3-b7e2-aa8af40e8231}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Ray.cs",
+              "DocumentMoniker": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Ray.cs",
+              "RelativeDocumentMoniker": "Lab3 - RayTracing\\Ray.cs",
+              "ToolTip": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Ray.cs",
+              "RelativeToolTip": "Lab3 - RayTracing\\Ray.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T09:18:25.404Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

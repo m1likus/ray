@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
+        "projectName": "Lab3 - RayTracing",
+        "projectPath": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
+        "packagesPath": "C:\\Users\\Valeria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Valeria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "OpenTK": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
