@@ -414,19 +414,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Valeria\\.nuget\\packages\\": {}
+    "C:\\Users\\kabal\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
+      "projectUniqueName": "C:\\Users\\kabal\\Desktop\\computer graphics\\RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
       "projectName": "Lab3 - RayTracing",
-      "projectPath": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
-      "packagesPath": "C:\\Users\\Valeria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Valeria\\Desktop\\computer graphics\\Lab3 - RayTracing\\Lab3 - RayTracing\\obj\\",
+      "projectPath": "C:\\Users\\kabal\\Desktop\\computer graphics\\RayTracing\\Lab3 - RayTracing\\Lab3 - RayTracing.csproj",
+      "packagesPath": "C:\\Users\\kabal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kabal\\Desktop\\computer graphics\\RayTracing\\Lab3 - RayTracing\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Valeria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kabal\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -478,7 +478,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

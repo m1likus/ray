@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK.Audio.OpenAL;
@@ -15,15 +16,35 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace RayTracing
 {
-	internal class View :GameWindow
+	public class View : GameWindow
 	{
-		public int shaderHandle;
-		int width, height;
-		public View(int width, int height) : base(GameWindowSettings.Default, NativeWindowSettings.Default)
+		int BasicProgramID;
+		int BasicVertexShader;
+		int BasicFragmentShader;
+
+		float width, height;
+
+		public List<Vector3> vertices = new List<Vector3>()
 		{
-			//center
-			CenterWindow(new Vector2i(width, height));
-			//initialize
+			new Vector3(-1f,1f,-1f),
+			new Vector3(1f,1f,-1f),
+			new Vector3(1f,-1f,-1f),
+			new Vector3(-1f,-1f,-1f),
+		};
+
+		public uint[] indices =
+		{
+			0, 1, 2,
+			2, 3, 0
+		};
+
+		public int VAO;
+		public int VBO;
+		public int EBO;
+
+		public View(float width, float height) : base(GameWindowSettings.Default, NativeWindowSettings.Default)
+		{
+			CenterWindow(new Vector2i((int)width, (int)height));
 			this.width = width;
 			this.height = height;
 		}
@@ -34,34 +55,15 @@ namespace RayTracing
 			this.width = e.Width;
 			this.height = e.Height;
 		}
-		public void LoadShader()
+
+		void LoadShader(string filename, ShaderType type, int program, out int address)
 		{
-			shaderHandle = GL.CreateProgram();
-			int vertexShader = GL.CreateShader(ShaderType.VertexShader);
-			GL.ShaderSource(vertexShader, LoadShaderSource("shader.vert"));
-			GL.CompileShader(vertexShader);
+			address = GL.CreateShader(type);
 
-			int fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-			GL.ShaderSource(fragmentShader, LoadShaderSource("shader.frag"));
-			GL.CompileShader(fragmentShader);
-
-			GL.AttachShader(shaderHandle, vertexShader);
-			GL.AttachShader(shaderHandle, fragmentShader);
-
-			GL.LinkProgram(shaderHandle);
-
-			GL.DetachShader(shaderHandle, vertexShader);
-			GL.DetachShader(shaderHandle, fragmentShader);
-
-			GL.DeleteShader(vertexShader);
-			GL.DeleteShader(fragmentShader);
-		}
-		public static string LoadShaderSource(string filepath)
-		{
 			string shaderSource = "";
 			try
 			{
-				using (StreamReader reader = new StreamReader("../../../Shaders/" + filepath))
+				using (StreamReader reader = new StreamReader(filename))
 				{
 					shaderSource = reader.ReadToEnd();
 				}
@@ -70,44 +72,70 @@ namespace RayTracing
 			{
 				Console.WriteLine("Failed to load shader source file: " + e.Message);
 			}
-			return shaderSource;
-		}
-		int vbo_position;
 
+			GL.ShaderSource(address, shaderSource);
+			GL.CompileShader(address);
+			GL.AttachShader(program, address);
+			Console.WriteLine(GL.GetShaderInfoLog(address));
+		}
+
+		void InitShaders()
+		{
+			BasicProgramID = GL.CreateProgram();
+			LoadShader("../../../Shaders/shader.vert", ShaderType.VertexShader, BasicProgramID,
+						out BasicVertexShader);		
+			LoadShader("../../../Shaders/shader.frag", ShaderType.FragmentShader, BasicProgramID,
+						out BasicFragmentShader);
+			GL.LinkProgram(BasicProgramID);
+
+			int status = 0;
+			GL.GetProgram(BasicProgramID, GetProgramParameterName.LinkStatus, out status);
+			Console.WriteLine(GL.GetProgramInfoLog(BasicProgramID));
+		}
 
 		protected override void OnLoad()
 		{
 			base.OnLoad();
 
-
-
-			Vector3[] vertdata = new Vector3[]{
-				new Vector3(-1f,-1f,0f),
-				new Vector3( 1f,-1f,0f),
-				new Vector3( 1f, 1f,0f),
-				new Vector3(-1f, 1f,0f),
-			};
-
-			GL.GenBuffers(1, out vbo_position);
-
-			GL.BindBuffer(BufferTarget.ArrayBuffer, vbo_position);
-			GL.BufferData<Vector3>(BufferTarget.ArrayBuffer, (IntPtr)(vertdata.Length *
-									Vector3.SizeInBytes), vertdata, BufferUsageHint.StaticDraw);
-
+			VAO = GL.GenVertexArray();
+			GL.BindVertexArray(VAO);
+			VBO = GL.GenBuffer();
+			GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
+			GL.BufferData(BufferTarget.ArrayBuffer,  vertices.Count * Vector3.SizeInBytes,  vertices.ToArray(), BufferUsageHint.StaticDraw);
 			GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
-			//GL.Uniform3(uniform_pos, campos);
-			//GL.Uniform1(uniform_aspect, AspectRatio);
-			GL.UseProgram(shaderHandle);
-
+			GL.EnableVertexArrayAttrib( VAO, 0);
 			GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+			EBO = GL.GenBuffer();
+			GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
+			GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
+			GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+
+			InitShaders();
 
 		}
 
+		protected override void OnRenderFrame(FrameEventArgs args)
+		{
+			GL.ClearColor(0.1f, 0.3f, 0.8f, 0.5f);
+			GL.Clear(ClearBufferMask.ColorBufferBit);
+
+
+			GL.UseProgram(BasicProgramID);
+			GL.BindVertexArray(VAO);
+			GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
+
+			GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+
+			Context.SwapBuffers();
+			base.OnRenderFrame(args);
+		}
+
+		protected override void OnUpdateFrame(FrameEventArgs args)
+		{
+			base.OnUpdateFrame(args);
+		}
+
 	}
-
-
-
-
 }
 
 

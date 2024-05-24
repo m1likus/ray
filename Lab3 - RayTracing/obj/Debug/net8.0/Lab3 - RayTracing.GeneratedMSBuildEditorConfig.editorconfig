@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Lab3___RayTracing
-build_property.ProjectDir = C:\Users\Valeria\Desktop\computer graphics\Lab3 - RayTracing\Lab3 - RayTracing\
+build_property.ProjectDir = C:\Users\kabal\Desktop\computer graphics\RayTracing\Lab3 - RayTracing\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
